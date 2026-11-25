@@ -1,0 +1,16 @@
+.upload-progress{position:fixed;z-index:1900;font-family:'DM Sans',sans-serif;color:var(--color-text-primary)}
+.upload-progress--desktop{right:20px;bottom:20px;width:320px;max-width:calc(100vw - 40px);max-height:min(60vh,480px);overflow-y:auto;display:flex;flex-direction:column;gap:8px}
+.upload-progress__job{--upload-accent:#60a5fa;padding:12px 14px;border:1px solid var(--color-border);border-radius:12px;background:var(--color-surface-raised);box-shadow:0 10px 34px var(--color-shadow)}
+.upload-progress__job-row{display:flex;align-items:center;gap:10px}
+.upload-progress__icon{display:grid;place-items:center;width:30px;height:30px;flex:none;border-radius:8px;color:var(--upload-accent)}
+.upload-progress__icon svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round}
+.upload-progress__copy{flex:1;min-width:0;display:flex;flex-direction:column}
+.upload-progress__copy strong{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.upload-progress__copy span{margin-top:1px;color:var(--color-text-secondary);font-size:11px;line-height:1.35;overflow-wrap:anywhere}
+.upload-progress button{font:inherit;cursor:pointer}
+.upload-progress__retry{min-height:36px;padding:0 11px;flex:none;border:1px solid var(--upload-accent);border-radius:9px;background:transparent;color:var(--upload-accent)}
+.upload-progress__dismiss{width:36px;height:36px;flex:none;border:0;background:transparent;color:var(--color-text-secondary);font-size:22px}
+.upload-progress button:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+.upload-progress__track{height:4px;margin-top:9px;overflow:hidden;border-radius:999px;background:var(--color-border)}
+.upload-progress__track span{display:block;height:100%;border-radius:inherit;background:var(--upload-accent);transition:width .2s ease}
+@media(prefers-reduced-motion:reduce){.upload-progress__track span{transition:none}}

@@ -1,0 +1,77 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+# ...but the documented template is meant to be committed.
+!.env.example
+
+CLAUDE.md
+faiz/
+docs/
+
+# Editor directories and files
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+fix_*.py
+add_*.py
+revert_*.py
+generate_*.py
+sidebar_option_*.py
+# Most of scripts/ is local tooling. Keep the CI guards + safe-install script tracked.
+scripts/*
+!scripts/guard-*.js
+!scripts/ci-install.sh
+!scripts/verify-test-manifest.js
+!scripts/select-tests.js
+!scripts/supply-chain-denylist.json
+!scripts/_gen-vertical-manifest.mjs
+screenshots/
+.playwright-mcp/
+.vercel
+ISSUES_TRACKER.md
+
+# Screenshots and debug scripts (generated during development/testing)
+*.png
+*.jpeg
+*.jpg
+*.mp4
+# Never commit build/upload artifacts. A stray "*-app.zip" (13MB, with a Windows-
+# illegal ".\" path) slipped into #1378 and broke `git pull` on Windows — see bug #488.
+*.zip
+debug_*.cjs
+test-quote-*.cjs
+scratch_*.cjs
+test-results/
+.claude/worktrees/
+.worktrees/
+.claude/settings.json
+.claude/settings.local.json
+VIDEO_CHECKLIST.md
+
+# Markdown — ignore all (CLAUDE.md, plans, scratch, audit notes) EXCEPT READMEs
+*.md
+!README.md
+!**/README.md
+fill-cognate-log.txt
+
+# Local git worktrees (never part of the repo).
+_worktrees/
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+config.bat

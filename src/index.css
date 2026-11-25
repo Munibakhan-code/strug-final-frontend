@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+/* ===== Theme tokens =====
+   Dark is the historical/default look (values match the hardcoded colors already used
+   throughout the app — see theme/driverTheme.js). Light overrides apply when
+   utils/theme.js sets data-theme="light" on <html> (persisted, toggled from Account). */
+/* Tailwind v4 CSS-first config: any --color-* custom property declared inside @theme
+   auto-generates matching utility classes (bg-surface, text-text-primary, border-border, etc).
+   These remain plain runtime CSS custom properties too — the :root[data-theme="light"]
+   override below still works exactly as before, so inline var(--color-*) usage in
+   not-yet-migrated files keeps functioning unchanged alongside the new Tailwind classes. */
+@theme {
+  --color-bg: #0a0a0e;
+  --color-surface: #13151c;
+  --color-surface-raised: #1a1b23;
+  --color-border: rgba(255, 255, 255, 0.09);
+  --color-border-subtle: rgba(255, 255, 255, 0.07);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.55);
+  --color-text-muted: rgba(255, 255, 255, 0.35);
+  --color-shadow: rgba(0, 0, 0, 0.5);
+  /* Stops for the animated shimmer-text effect (Home's "browse by category" label) — needs
+     its own tokens rather than reusing --color-text-* because it's a background-clip:text
+     gradient, not a flat color. */
+  --color-shimmer-a: rgba(255, 255, 255, 0.28);
+  --color-shimmer-b: rgba(255, 255, 255, 0.42);
+  /* Translucent surface for floating glass-panel chrome (sidebar rail, floating buttons) that
+     sits over page content with a backdrop-blur — needs alpha, unlike the opaque --color-surface. */
+  --color-surface-glass: rgba(17, 18, 22, 0.95);
+  /* Low-contrast fill overlays (pill/button backgrounds, dropzones, hover states, empty-state
+     boxes) used throughout the seller dashboards — a graduated scale so those screens don't
+     need one-off literals per shade. Direction flips with theme like --color-border does. */
+  --color-wash-1: rgba(255, 255, 255, 0.03);
+  --color-wash-2: rgba(255, 255, 255, 0.06);
+  --color-wash-3: rgba(255, 255, 255, 0.09);
+  --color-wash-4: rgba(255, 255, 255, 0.13);
+  --wedding-accent: #db2877;
+  --wedding-accent-soft: #f472b6;
+}
+
+:root[data-theme="light"] {
+  --color-bg: #f6f6f8;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-border: rgba(10, 10, 14, 0.16);
+  --color-border-subtle: rgba(10, 10, 14, 0.11);
+  --color-text-primary: #0a0a0e;
+  --color-text-secondary: rgba(10, 10, 14, 0.62);
+  --color-text-muted: rgba(10, 10, 14, 0.42);
+  --color-shadow: rgba(10, 10, 14, 0.16);
+  --color-shimmer-a: rgba(10, 10, 14, 0.32);
+  --color-shimmer-b: rgba(10, 10, 14, 0.55);
+  --color-surface-glass: rgba(255, 255, 255, 0.92);
+  --color-wash-1: rgba(10, 10, 14, 0.035);
+  --color-wash-2: rgba(10, 10, 14, 0.055);
+  --color-wash-3: rgba(10, 10, 14, 0.07);
+  --color-wash-4: rgba(10, 10, 14, 0.09);
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* The app owns all scrolling internally; lock the document so mobile
+   browsers don't rubber-band / pull-to-refresh over the fixed shell. */
+html, body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+/* Native selects — color-scheme flips the browser's own dropdown chrome (Windows otherwise
+   shows a white list on a dark page, or vice versa) alongside the explicit option colors. */
+select.strug-native-select {
+  color-scheme: dark;
+}
+:root[data-theme="light"] select.strug-native-select {
+  color-scheme: light;
+}
+select.strug-native-select {
+  cursor: pointer;
+}
+select.strug-native-select option {
+  background: var(--color-surface-raised);
+  color: var(--color-text-primary);
+}
+/* Global fallback so any <select> not using the scoped class still gets a themed dropdown */
+select option {
+  background-color: var(--color-surface-raised);
+  color: var(--color-text-primary);
+}
+
+#root {
+  width: 100%;
+  height: 100vh;   /* fallback for browsers without dvh */
+  height: 100dvh;  /* tracks the visible viewport as mobile toolbars show/hide */
+}
+
+/* ===== Accessibility: keyboard focus visibility =====
+   The app sets `outline:none` inline on many controls for the mouse aesthetic, which
+   also hid the focus ring from keyboard users (there was no :focus-visible fallback).
+   Restore a visible ring for KEYBOARD focus only, with !important so it wins over the
+   inline `outline:none` (which is not itself !important). Mouse/touch focus stays clean.
+   The outline follows each element's own border-radius in modern browsers. */
+:focus:not(:focus-visible) { outline: none; }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible,
+[role="link"]:focus-visible,
+[role="tab"]:focus-visible,
+[role="menuitem"]:focus-visible,
+[role="option"]:focus-visible,
+[role="switch"]:focus-visible,
+[contenteditable]:focus-visible {
+  outline: 2px solid #60a5fa !important;
+  outline-offset: 2px;
+}
+
+/* Messages composer: the raised chrome already shows focus; hide the cyan offset ring. */
+.msg-composer-input:focus,
+.msg-composer-input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Food address editor: parent surface already has a border; hide the cyan focus ring. */
+.food-addr-edit input:focus,
+.food-addr-edit input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Skip-to-content link — off-screen until it receives keyboard focus (first Tab). */
+.skip-to-content {
+  position: fixed;
+  top: 8px;
+  left: -9999px;
+  z-index: 100000;
+  padding: 10px 16px;
+  background: #2563eb;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.5);
+}
+.skip-to-content:focus {
+  left: 8px;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ===== Accessibility: respect the OS "reduce motion" setting =====
+   The app uses CSS keyframe entrances (fadeUp, shimmer, staggered list reveals, pulses) and
+   many inline transitions. For users who ask for reduced motion, collapse animation and
+   transition durations to near-zero rather than removing them — animations with a `both`/
+   `forwards` fill still jump to their END state, so content stays visible (setting
+   `animation: none` would risk leaving `fadeUp` elements stuck at opacity 0). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Markdown AI Chat Styles */
+.ai-markdown-content p { margin-top: 0; margin-bottom: 0.75em; }
+.ai-markdown-content p:last-child { margin-bottom: 0; }
+.ai-markdown-content ul, .ai-markdown-content ol { padding-left: 1.5em; margin-top: 0.5em; margin-bottom: 0.75em; }
+.ai-markdown-content li { margin-bottom: 0.25em; }
+.ai-markdown-content strong { font-weight: 700; color: #fff; }
+
+/* Construct map pins — reset Leaflet's default white box so price pills render cleanly */
+.leaflet-div-icon.precon-map-pin {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.leaflet-container .precon-map-pin {
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+}
+/* Popup: force readable dark card (Leaflet default is white; className may sit on wrapper) */
+.leaflet-popup.precon-map-popup .leaflet-popup-content-wrapper,
+.precon-map-popup .leaflet-popup-content-wrapper {
+  background: #0f172a !important;
+  color: #f1f5f9 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding: 2px 0 !important;
+}
+.leaflet-popup.precon-map-popup .leaflet-popup-content,
+.precon-map-popup .leaflet-popup-content {
+  margin: 14px 16px !important;
+  min-width: 190px;
+  color: #f1f5f9 !important;
+}
+.leaflet-popup.precon-map-popup .leaflet-popup-tip,
+.precon-map-popup .leaflet-popup-tip {
+  background: #0f172a !important;
+  box-shadow: none !important;
+}
+.leaflet-popup.precon-map-popup a.leaflet-popup-close-button,
+.precon-map-popup a.leaflet-popup-close-button {
+  color: rgba(255, 255, 255, 0.55) !important;
+  top: 8px !important;
+  right: 10px !important;
+  font-size: 18px !important;
+  width: 24px !important;
+  height: 24px !important;
+  padding: 0 !important;
+}

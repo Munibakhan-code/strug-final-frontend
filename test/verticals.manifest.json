@@ -1,0 +1,399 @@
+{
+  "comment": "Sprint 3: watch globs + always-on core smoke. Every *.test.js(x) is in exactly one vertical.",
+  "testGlobs": [
+    "src/**/*.test.js",
+    "src/**/*.test.jsx"
+  ],
+  "fullSuiteTriggers": [
+    "package.json",
+    "package-lock.json",
+    "vite.config.js",
+    "src/App.jsx",
+    "scripts/guard-*",
+    ".github/workflows/test.yml",
+    "scripts/select-tests.js",
+    "scripts/verify-test-manifest.js",
+    "test/verticals.manifest.json"
+  ],
+  "verticals": {
+    "food": {
+      "tests": [
+        "src/api/food.test.js",
+        "src/utils/cateringCheckout.test.js"
+      ],
+      "watch": [
+        "src/pages/Food.jsx",
+        "src/pages/Catering*",
+        "src/api/food.js",
+        "src/utils/food*",
+        "src/utils/cateringCheckout*"
+      ]
+    },
+    "shop": {
+      "tests": [
+        "src/api/shop.test.js",
+        "src/utils/shopAvailabilityHelpers.test.js",
+        "src/utils/shopBrowseHelpers.test.js",
+        "src/utils/shopBuyerHelpers.test.js",
+        "src/utils/shopCheckoutHelpers.test.js",
+        "src/utils/shopMappers.test.js",
+        "src/utils/shopMediaHelpers.test.js",
+        "src/utils/shopSellerHelpers.test.js",
+        "src/utils/shopVerticalHelpers.test.js",
+        "src/utils/wishlistAdd.test.js",
+        "src/pages/DigitalProducts.browse.test.jsx"
+      ],
+      "watch": [
+        "src/pages/Shop*",
+        "src/api/shop.js",
+        "src/utils/shop*",
+        "src/utils/wishlist*",
+        "src/pages/DigitalProducts*"
+      ]
+    },
+    "rideshare": {
+      "tests": [
+        "src/api/rideshare.endpoints.test.js",
+        "src/api/rideshare.test.js",
+        "src/components/SmoothMarker.test.jsx",
+        "src/components/rideshare/rideshareComponents.test.jsx",
+        "src/hooks/useDriverOnlineReminder.test.js",
+        "src/hooks/useRideScheduleValidation.test.jsx",
+        "src/pages/Rideshare.test.jsx",
+        "src/utils/rideshareRiderExperience.test.js"
+      ],
+      "watch": [
+        "src/pages/Rideshare*",
+        "src/api/rideshare*",
+        "src/api/driver*",
+        "src/utils/rideshare*",
+        "src/components/rideshare/**",
+        "src/components/SmoothMarker*",
+        "src/hooks/useRide*",
+        "src/hooks/useDriver*"
+      ]
+    },
+    "jobs": {
+      "tests": [
+        "src/utils/companyJobs.test.js",
+        "src/utils/employerAts.test.js",
+        "src/utils/safeUrl.test.js",
+        "src/utils/employerJobs.test.js",
+        "src/utils/jobAnalytics.test.js",
+        "src/utils/jobMessaging.test.js",
+        "src/utils/jobModeration.test.js",
+        "src/utils/jobRecommend.test.js",
+        "src/utils/jobSavedSearch.test.js",
+        "src/utils/seekerJobs.test.js",
+        "src/utils/candidateProfileCompleteness.test.js",
+        "src/utils/jobsEdgeDrawer.test.js",
+        "src/utils/resumeBuilder.test.js",
+        "src/utils/candidatePortfolio.test.js",
+        "src/utils/resumePdf.test.js",
+        "src/components/jobs/jobsLayout.test.js",
+        "src/components/jobs/TalentPoolPanel.imports.test.js"
+      ],
+      "watch": [
+        "src/pages/Jobs*",
+        "src/pages/EmployerDashboard*",
+        "src/pages/CompanyProfile*",
+        "src/pages/seller/SellerJobsDashboard.jsx",
+        "src/utils/employer*",
+        "src/utils/seekerJobs*",
+        "src/utils/job*",
+        "src/utils/companyJobs*",
+        "src/utils/candidateProfileCompleteness*",
+        "src/utils/jobsEdgeDrawer*",
+        "src/utils/resumeBuilder*",
+        "src/utils/candidatePortfolio*",
+        "src/utils/resumePdf*",
+        "src/components/jobs/jobsLayout*",
+        "src/components/jobs/TalentPoolPanel*",
+        "src/api/jobs*"
+      ]
+    },
+    "videos": {
+      "tests": [
+        "src/api/videos.endpoints.test.js",
+        "src/components/Breadcrumbs.test.jsx",
+        "src/components/creatorAudienceIntelligence.test.jsx",
+        "src/components/FriendActivityRail.test.jsx",
+        "src/components/SlideOutPanel.test.jsx",
+        "src/utils/mobilePlayback.test.js",
+        "src/components/videos/DesktopVideoEndScreen.test.jsx",
+        "src/components/creatorAnalytics.ciu.test.jsx",
+        "src/components/creator/CreatorModalViewport.test.jsx",
+        "src/components/videos/VideoCategoryBar.test.jsx",
+        "src/components/videos/VideoSectionTabs.test.jsx",
+        "src/components/videos/ViewerAnalyticsPanel.test.jsx",
+        "src/components/videos/VideosMobileBottomNav.test.jsx",
+        "src/components/videos/WatchEdgeDrawer.test.jsx",
+        "src/components/UploadProgressWidget.test.jsx",
+        "src/hooks/useModalHistoryEntry.test.jsx",
+        "src/pages/Videos.browse.test.jsx",
+        "src/utils/hlsPlayback.test.js",
+        "src/utils/listenMix.test.js",
+        "src/utils/uploadManager.test.js",
+        "src/utils/videoChipRanking.test.js",
+        "src/utils/videoChipSignals.test.js",
+        "src/utils/videoChips.test.js",
+        "src/utils/videoDuration.test.js",
+        "src/utils/videoI18nCoverage.test.js",
+        "src/utils/videoSearch.test.js",
+        "src/utils/videoPlayQueue.test.js",
+        "src/utils/videoPlaybackCache.test.js",
+        "src/utils/videoShareTargets.test.js",
+        "src/utils/videoTitle.test.js",
+        "src/utils/viewerAnalytics.test.js",
+        "src/utils/homeFeed.test.js",
+        "src/utils/friendCircle.test.js",
+        "src/utils/creatorChoice.test.js",
+        "src/utils/videosDrawerBadges.test.js"
+      ],
+      "watch": [
+        "src/pages/Videos*",
+        "src/pages/live/**",
+        "src/pages/Live.jsx",
+        "src/components/videos/**",
+        "src/components/FriendActivityRail*",
+        "src/components/SlideOutPanel*",
+        "src/components/creatorAnalytics*",
+        "src/utils/video*",
+        "src/utils/desktopVideoEndScreen.js",
+        "src/utils/hls*",
+        "src/utils/listenMix*",
+        "src/utils/livePlayback*",
+        "src/utils/watchedFeed*",
+        "src/utils/friendCircle*",
+        "src/utils/creatorChoice*",
+        "src/api/videos*",
+        "src/api/live.js"
+      ]
+    },
+    "medical": {
+      "tests": [
+        "src/utils/medicalBrowse.test.js",
+        "src/utils/medicalPublish.test.js"
+      ],
+      "watch": [
+        "src/pages/Medical*",
+        "src/utils/medical*",
+        "src/api/medical.js"
+      ]
+    },
+    "wedding": {
+      "tests": [
+        "src/pages/weddingUtils.test.js"
+      ],
+      "watch": [
+        "src/pages/Wedding*",
+        "src/pages/wedding*",
+        "src/pages/EventConcierge*",
+        "src/pages/BookArtist*"
+      ]
+    },
+    "tempstay": {
+      "tests": [
+        "src/api/booking.test.js",
+        "src/utils/bookingIsolation.test.js",
+        "src/utils/tempstayAvailability.test.js",
+        "src/utils/tempstayBrowseFilters.test.js",
+        "src/utils/tempstayListingHelpers.test.js",
+        "src/utils/tempstayTrips.test.js"
+      ],
+      "watch": [
+        "src/pages/*Stay*",
+        "src/utils/tempstay*",
+        "src/utils/booking*",
+        "src/api/booking*"
+      ]
+    },
+    "vehicles": {
+      "tests": [
+        "src/utils/vehicleBrowseFilters.test.js",
+        "src/utils/vehicleMappers.test.js",
+        "src/utils/vehicleTrips.test.js"
+      ],
+      "watch": [
+        "src/utils/vehicle*",
+        "src/pages/Automotive*",
+        "src/pages/seller/SellerAutomotive*"
+      ]
+    },
+    "equipment": {
+      "tests": [
+        "src/utils/equipmentAvailability.test.js",
+        "src/utils/equipmentBrowseFilters.test.js",
+        "src/utils/equipmentMappers.test.js",
+        "src/utils/equipmentTrips.test.js"
+      ],
+      "watch": [
+        "src/utils/equipment*"
+      ]
+    },
+    "venues": {
+      "tests": [
+        "src/utils/venueAvailability.test.js",
+        "src/utils/venueBrowseAvailability.test.js",
+        "src/utils/venueBrowseFilters.test.js",
+        "src/utils/venueMappers.test.js",
+        "src/utils/venueNav.test.js",
+        "src/utils/venueTrips.test.js"
+      ],
+      "watch": [
+        "src/utils/venue*"
+      ]
+    },
+    "raise": {
+      "tests": [
+        "src/utils/raiseBrowse.test.js"
+      ],
+      "watch": [
+        "src/utils/raise*",
+        "src/pages/Raise*"
+      ]
+    },
+    "discounts": {
+      "tests": [
+        "src/utils/discountBrowse.test.js"
+      ],
+      "watch": [
+        "src/utils/discount*",
+        "src/pages/Discounts*"
+      ]
+    },
+    "property": {
+      "tests": [
+        "src/utils/geo.test.js",
+        "src/utils/geocode.test.js",
+        "src/utils/mortgageValidation.test.js",
+        "src/utils/propertyFinancing.test.js"
+      ],
+      "watch": [
+        "src/utils/geo*",
+        "src/utils/mortgage*",
+        "src/utils/property*"
+      ]
+    },
+    "recruiter": {
+      "tests": [
+        "src/api/referral.firstTouch.test.js"
+      ],
+      "watch": [
+        "src/pages/Recruiter.jsx",
+        "src/api/referral.js",
+        "src/api/referral.*"
+      ]
+    },
+    "core": {
+      "always": true,
+      "watch": [
+        "src/api/client.js",
+        "src/api/accountSwitch.js",
+        "src/store/auth.js",
+        "src/store/savedAccounts.js",
+        "src/utils/route.js",
+        "src/App.jsx",
+        "src/utils/observability.js",
+        "src/ErrorBoundary.jsx",
+        "src/main.jsx",
+        "eslint.config.js"
+      ],
+      "tests": [
+        "src/api/client.test.js",
+        "src/store/auth.test.js",
+        "src/store/savedAccounts.test.js",
+        "src/utils/documentVerified.test.js",
+        "src/utils/route.test.js",
+        "src/utils/sessionRefresh.test.js",
+        "src/utils/voiceWaveformHelpers.test.js",
+        "src/test/smoke.test.js",
+        "src/utils/observability.test.js",
+        "src/test/stripeElementBindings.test.js"
+      ]
+    },
+    "platform": {
+      "watch": [
+        "src/components/**",
+        "src/hooks/**",
+        "src/store/**",
+        "src/api/**",
+        "src/utils/**"
+      ],
+      "tests": [
+        "src/api/chatSocket.test.js",
+        "src/api/chat.channel.test.js",
+        "src/api/payment.test.js",
+        "src/api/quotes.test.js",
+        "src/api/social-follow-requests.test.js",
+        "src/components/BugReportModal.test.jsx",
+        "src/components/ClaimCard.test.jsx",
+        "src/components/CommandPalette.test.jsx",
+        "src/components/ConfirmDialog.test.jsx",
+        "src/components/CountrySelect.test.jsx",
+        "src/components/NotificationPanel.test.jsx",
+        "src/components/OnboardingCards.test.jsx",
+        "src/components/QuickReplyPopup.test.jsx",
+        "src/components/Toast.a11y.test.jsx",
+        "src/components/Tooltip.test.jsx",
+        "src/components/TransactionalToast.test.jsx",
+        "src/components/VerticalEdgeDrawer.test.jsx",
+        "src/components/clickableProps.test.jsx",
+        "src/components/freelance/FreelanceGigForm.a11y.test.jsx",
+        "src/components/freelance/FreelanceWalletPanel.a11y.test.jsx",
+        "src/hooks/useFocusTrap.test.jsx",
+        "src/hooks/useVideoDrafts.test.js",
+        "src/hooks/useI18nCategoryList.test.js",
+        "src/hooks/useIncomingOffers.test.js",
+        "src/hooks/useToastQueue.test.js",
+        "src/hooks/useTransactionalToast.test.js",
+        "src/pages/live/StreamModerationPanel.test.jsx",
+        "src/test/guardSprint2.test.js",
+        "src/test/selectTests.test.js",
+        "src/utils/claimableOffer.test.js",
+        "src/utils/diagnostics.test.js",
+        "src/utils/diversifyByChannel.test.js",
+        "src/utils/edgeDrawerActivity.test.js",
+        "src/utils/emergencyNumber.test.js",
+        "src/utils/eventMappers.test.js",
+        "src/utils/eventTickets.test.js",
+        "src/utils/format.test.js",
+        "src/utils/formatPlatformCount.test.js",
+        "src/utils/fmtPayoutCad.test.js",
+        "src/utils/userLocation.test.js",
+        "src/utils/livePlayback.test.js",
+        "src/utils/whipPublish.test.js",
+        "src/utils/mediaUrl.test.js",
+        "src/utils/messagesRenderHelpers.test.js",
+        "src/utils/chatQuietPrefs.test.js",
+        "src/utils/disappearingMessagesPrefs.test.js",
+        "src/utils/datetimeLocal.test.js",
+        "src/utils/scheduledMessages.test.js",
+        "src/utils/chatContextOrigin.test.js",
+        "src/utils/chatMedia.test.js",
+        "src/utils/dmSourceVertical.test.js",
+        "src/utils/notificationToast.test.js",
+        "src/utils/offerToast.test.js",
+        "src/utils/quoteFormData.test.js",
+        "src/utils/sdkPreload.test.js",
+        "src/utils/socialComments.test.js",
+        "src/utils/socialVault.test.js",
+        "src/utils/profileMostViewed.test.js",
+        "src/utils/profileWorkStatus.test.js",
+        "src/utils/profileWidgetHelpers.test.js",
+        "src/utils/savedTownHallGrid.test.js",
+        "src/utils/inAppCamera.test.js",
+        "src/utils/twitterSource.test.js",
+        "src/utils/time.test.js",
+        "src/utils/videoDrafts.test.js",
+        "src/utils/townHallPostMap.test.js",
+        "src/utils/verticalEdgeDrawerConfig.test.js",
+        "src/utils/verticalEdgeDrawerData.test.js",
+        "src/utils/watchedFeedShelves.test.js",
+        "src/utils/workCategoryMatch.test.js",
+        "src/utils/workHirePreset.test.js",
+        "src/utils/workRates.test.js"
+      ]
+    }
+  }
+}

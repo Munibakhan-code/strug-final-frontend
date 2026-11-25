@@ -1,0 +1,198 @@
+/* Shared Jobs Phase-4 interactive polish (hover / focus / feedback). */
+
+.jobs-btn {
+	transition:
+		background-color 180ms ease-out,
+		border-color 180ms ease-out,
+		color 180ms ease-out,
+		box-shadow 180ms ease-out,
+		opacity 180ms ease-out,
+		transform 150ms ease-out;
+}
+
+.jobs-btn:hover:not(:disabled) {
+	border-color: color-mix(in srgb, var(--color-border) 55%, #2563eb);
+	box-shadow: 0 4px 14px color-mix(in srgb, var(--color-shadow) 35%, transparent);
+	transform: translateY(-1px);
+}
+
+.jobs-btn:active:not(:disabled) {
+	transform: translateY(0);
+	box-shadow: none;
+}
+
+.jobs-btn:focus-visible {
+	outline: 2px solid #2563eb;
+	outline-offset: 2px;
+}
+
+.jobs-btn:disabled {
+	cursor: not-allowed;
+	opacity: 0.55;
+	transform: none;
+	box-shadow: none;
+}
+
+.jobs-btn--primary:hover:not(:disabled) {
+	filter: brightness(1.06);
+	border-color: #2563eb;
+}
+
+.jobs-btn--danger:hover:not(:disabled) {
+	background: color-mix(in srgb, #f87171 12%, transparent);
+}
+
+.jobs-input {
+	transition:
+		border-color 180ms ease-out,
+		box-shadow 180ms ease-out,
+		background-color 180ms ease-out;
+}
+
+.jobs-input:hover:not(:disabled) {
+	border-color: color-mix(in srgb, var(--color-border) 60%, #2563eb);
+}
+
+.jobs-input:focus {
+	border-color: #2563eb;
+	box-shadow: 0 0 0 3px color-mix(in srgb, #2563eb 22%, transparent);
+}
+
+.jobs-input:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.jobs-card {
+	transition:
+		border-color 180ms ease-out,
+		box-shadow 200ms ease-out,
+		transform 180ms ease-out,
+		background-color 180ms ease-out;
+}
+
+.jobs-card--interactive:hover {
+	border-color: color-mix(in srgb, var(--color-border) 50%, #2563eb);
+	box-shadow: 0 8px 22px color-mix(in srgb, var(--color-shadow) 40%, transparent);
+	transform: translateY(-1px);
+}
+
+.jobs-tile {
+	transition:
+		border-color 180ms ease-out,
+		box-shadow 200ms ease-out,
+		transform 180ms ease-out;
+}
+
+.jobs-tile:hover {
+	border-color: color-mix(in srgb, var(--color-border) 45%, #2563eb);
+	box-shadow: 0 10px 24px color-mix(in srgb, var(--color-shadow) 38%, transparent);
+	transform: translateY(-2px);
+}
+
+.jobs-tile a img {
+	transition: transform 220ms ease-out;
+}
+
+.jobs-tile:hover a img {
+	transform: scale(1.03);
+}
+
+.jobs-expand {
+	animation: jobs-expand-in 200ms ease-out;
+}
+
+@keyframes jobs-expand-in {
+	from {
+		opacity: 0;
+		transform: translateY(-4px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.jobs-feedback {
+	animation: jobs-feedback-in 200ms ease-out;
+	border-radius: 10px;
+	padding: 8px 12px;
+	line-height: 1.45;
+}
+
+.jobs-feedback--ok {
+	background: color-mix(in srgb, #4ade80 14%, transparent);
+	border: 1px solid color-mix(in srgb, #4ade80 35%, transparent);
+	color: #4ade80;
+}
+
+.jobs-feedback--err {
+	background: color-mix(in srgb, #f87171 12%, transparent);
+	border: 1px solid color-mix(in srgb, #f87171 35%, transparent);
+	color: #f87171;
+}
+
+.jobs-feedback--warn {
+	background: color-mix(in srgb, #fbbf24 12%, transparent);
+	border: 1px solid color-mix(in srgb, #fbbf24 35%, transparent);
+	color: #fbbf24;
+}
+
+@keyframes jobs-feedback-in {
+	from {
+		opacity: 0;
+		transform: translateY(-2px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.jobs-empty {
+	transition: border-color 180ms ease-out, background-color 180ms ease-out;
+}
+
+.jobs-toggle {
+	transition:
+		background-color 180ms ease-out,
+		border-color 180ms ease-out,
+		box-shadow 180ms ease-out;
+}
+
+.jobs-toggle:hover {
+	border-color: color-mix(in srgb, var(--color-border) 50%, #2563eb);
+	background: color-mix(in srgb, var(--color-surface-raised) 88%, #2563eb);
+}
+
+.jobs-toggle:focus-within {
+	outline: 2px solid #2563eb;
+	outline-offset: 2px;
+}
+
+.jobs-chip {
+	transition: background-color 150ms ease-out, border-color 150ms ease-out, transform 150ms ease-out;
+}
+
+.jobs-origin-badge {
+	transition: opacity 180ms ease-out, transform 180ms ease-out;
+	animation: jobs-feedback-in 180ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.jobs-btn,
+	.jobs-input,
+	.jobs-card,
+	.jobs-tile,
+	.jobs-tile a img,
+	.jobs-expand,
+	.jobs-feedback,
+	.jobs-empty,
+	.jobs-toggle,
+	.jobs-chip,
+	.jobs-origin-badge {
+		transition: none !important;
+		animation: none !important;
+		transform: none !important;
+	}
+}

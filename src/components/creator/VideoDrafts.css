@@ -1,0 +1,15 @@
+.video-drafts,.video-draft-status{color:var(--color-text-secondary);font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.video-drafts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;margin-top:16px}
+.video-draft-card{min-width:0;overflow:hidden;border:1px solid var(--color-border);border-radius:14px;background:var(--color-surface)}
+.video-draft-thumb{aspect-ratio:16/9;display:grid;place-items:center;background:var(--color-surface-raised);color:var(--color-text-muted)}
+.video-draft-thumb img{width:100%;height:100%;object-fit:cover}.video-draft-thumb svg{width:36px;height:36px;fill:currentColor}.video-draft-card-copy{padding:14px}
+.video-draft-card h4{color:var(--color-text-primary);margin:0;font-size:16px;overflow-wrap:anywhere}
+.video-draft-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.video-draft-actions button,.video-content-filter button{min-height:44px;padding:10px 14px;border:1px solid var(--color-border);border-radius:10px;background:var(--color-surface-raised);color:var(--color-text-primary);cursor:pointer;font:inherit}
+.video-draft-actions button:focus-visible,.video-content-filter button:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+.video-draft-actions button:disabled{opacity:.5;cursor:wait}
+.video-draft-delete{margin-top:12px;padding:10px;border-radius:10px;background:var(--color-surface-raised);display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.video-draft-backdrop{position:fixed;inset:0;z-index:10010;background:rgba(0,0,0,.7);display:grid;place-items:center;padding:16px;box-sizing:border-box}
+.video-draft-dialog{box-sizing:border-box;max-width:460px;width:100%;max-height:calc(100dvh - 32px);overflow:auto;border:1px solid var(--color-border);border-radius:16px;padding:20px;background:var(--color-surface);color:var(--color-text-primary)}
+.video-content-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.video-content-filter button[aria-pressed=true]{border-color:#60a5fa;color:#60a5fa}
